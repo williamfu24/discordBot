@@ -1,0 +1,11 @@
+{
+    "name": "FuBot",
+    "version": "1.0.0",
+    "description": "First practice Discord Bot",
+    "main": "bot.js",
+    "author": "William Fu",
+    "dependencies": {
+        "discord.io": "^2.5.3",
+        "winston": "^3.2.1"
+    }
+}
