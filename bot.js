@@ -25,8 +25,11 @@ bot.on('message', function(user, userID, channelID, message, evt){ //while bot i
     if (message.substring(0,1)=='!'){ //if message substring first char (0,1) ==! then
         var args = message.substring(1).split(' '); //split message into args split on spaces after !
         var cmd = args[0]; //cmd is first part of args so ! hi dad. cmd = hi
-
-        args = args.splice(1); //splice(int index, int howmany, itemA, itemB). index = position to add/remove (-num for from the end)
+        var HoM = "Hit or miss, I guess they never miss, huh? \
+        You got a boyfriend I bet he doesnt kiss ya, muah! \
+        He gon find another girl and he wont miss ya! \
+        \nHe gon skrrt and hit the dab like Wiz Khalifa";
+        args = args.splice(1); //splice(int index, int howmany, itemA, itemB). index = position to add/remove (negative num for from the end)
                                 //howmany = items to remove. 0 = none
                                 //item1-->itemX new items to add
                                 //args = args.splice(1) keeps only first item/gets rid of rest starting at postion 1
@@ -38,6 +41,34 @@ bot.on('message', function(user, userID, channelID, message, evt){ //while bot i
                     message: 'Pong!'
                 });
             break;
+            case 'hit':
+                bot.sendMessage({
+                    to: channelID,
+                    message: HoM
+                });
+            break;
+            case 'mySR':
+                var rand = Math.random()*10;
+                if (rand==9){
+                    var temp = Math.floor(Math.random()* (1000)+4000);
+                }
+                if (rand <9 && rand>=7){
+                    var temp = Math.floor(Math.random()* (1000)+3000);
+                }
+                if (rand <7 && rand>=4){
+                    var temp = Math.floor(Math.random()* (1000)+2000);
+                }
+                if (rand <4 && rand>=2){
+                    var temp = Math.floor(Math.random()* (1000)+ 1000);
+                }
+                if (rand<2){
+                    var temp = Math.random()* 1000;
+                }
+                bot.sendMessage({
+                    to: channelID,
+                    message: "@"+user+"'s SR is" + temp
+                });
+            break
             //More case Commands here
         }
     }
