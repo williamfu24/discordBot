@@ -109,5 +109,8 @@ bot.on('message', function(user, userID, channelID, message, evt){
 //Install dependencies
 //npm install discord.io winston --save
 
-//Run script by executing
+//Run script by executing while in script folder
+//dir = ls
+//cd ..
+//cd blah
 //node bot.js
