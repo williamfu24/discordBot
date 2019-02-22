@@ -1,12 +1,14 @@
 var Discord = require('discord.io');
 var logger = require('winston');
-var auth = require('./DiscordBot/auth.json'); // ./ or ../ for relative path| / for absolute path
+var auth = require('../auth.json'); // ./ or ../ for relative path| / for absolute path
 //Configure logger settings
+
 logger.remove(logger.transports.Console);
-logger.add(logger.transports.Console),{
+logger.add(new logger.transports.Console, {
     colorized:true
 });
 logger.level = 'debug';
+
 //Init Discord Bot
 var bot = new Discord.Client({ //creates new discord client aka bot
     token: auth.token, //use auth.json's token
@@ -15,7 +17,7 @@ var bot = new Discord.Client({ //creates new discord client aka bot
 bot.on('ready', function(evt){ //evt = event. When bot is ready triggers event to log information
     logger.info("Connected");
     logger.info('Logged in as: ');
-    logger.info(bot.username + ' -(' + bot.id ')');
+    logger.info(bot.username + ' -(' + bot.id + ')');
 });
 bot.on('message', function(user, userID, channelID, message, evt){ //while bot is on. message function (takes user, user idm channel id, message, and is evt)
     //Bot needs to know if it will execute a command
@@ -50,19 +52,19 @@ bot.on('Hi Dad', function(user, userID, channelID, message, evt){
         case 'im':
             bot.sendMessage({
                 to: channelID,
-                message: ("Hi" + args + ", I'm BEEPBOOP");
+                message: ("Hi" + args + ", I'm BEEPBOOP")
             });
         break;
         case 'Im':
             bot.sendMessage({
                 to: channelID,
-                message: ("Hi" + args + ", I'm BEEPBOOP");
+                message: ("Hi" + args + ", I'm BEEPBOOP")
             });
         break;
         case "I'm":
             bot.sendMessage({
                 to: channelID,
-                message: ("Hi" + args + ", I'm BEEPBOOP");
+                message: ("Hi" + args + ", I'm BEEPBOOP")
             });
         break;
 
