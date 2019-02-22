@@ -42,7 +42,7 @@ bot.on('message', function(user, userID, channelID, message, evt){ //while bot i
         }
     }
 });
-bot.on('Hi Dad', function(user, userID, channelID, message, evt){
+bot.on('message', function(user, userID, channelID, message, evt){
     var args = message.split(' ');
     var cmd = args[0];
     args = args.splice(1);
@@ -50,24 +50,29 @@ bot.on('Hi Dad', function(user, userID, channelID, message, evt){
     switch(cmd){
         //'im'
         case 'im':
+        if(args[0]){
             bot.sendMessage({
                 to: channelID,
-                message: ("Hi" + args + ", I'm BEEPBOOP")
+                message: ("Hi " + args.join(' ') + ", I'm BEEPBOOP")
             });
+        }
         break;
         case 'Im':
+        if(args[0]){
             bot.sendMessage({
                 to: channelID,
-                message: ("Hi" + args + ", I'm BEEPBOOP")
+                message: ("Hi " + args.join(' ') + ", I'm BEEPBOOP")
             });
+        }
         break;
         case "I'm":
+        if(args[0]){
             bot.sendMessage({
                 to: channelID,
-                message: ("Hi" + args + ", I'm BEEPBOOP")
+                message: ("Hi " + args.join(' ') + ", I'm BEEPBOOP")
             });
+        }
         break;
-
     }
 });
 //Install dependencies
