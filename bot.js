@@ -62,11 +62,11 @@ bot.on('message', function(user, userID, channelID, message, evt){ //while bot i
                     var temp = Math.floor(Math.random()* (1000)+ 1000);
                 }
                 if (rand<2){
-                    var temp = Math.random()* 1000;
+                    var temp = Math.floor(Math.random()* 1000);
                 }
                 bot.sendMessage({
                     to: channelID,
-                    message: "@"+user+"'s SR is" + temp
+                    message: "@"+user+"'s SR is " + temp
                 });
             break
             //More case Commands here
@@ -84,7 +84,7 @@ bot.on('message', function(user, userID, channelID, message, evt){
         if(args[0]){
             bot.sendMessage({
                 to: channelID,
-                message: ("Hi " + args.join(' ') + ", I'm BEEPBOOP")
+                message: ("Hi " + args.join(' ') + ", I'm Dad")
             });
         }
         break;
@@ -92,7 +92,7 @@ bot.on('message', function(user, userID, channelID, message, evt){
         if(args[0]){
             bot.sendMessage({
                 to: channelID,
-                message: ("Hi " + args.join(' ') + ", I'm BEEPBOOP")
+                message: ("Hi " + args.join(' ') + ", I'm Dad")
             });
         }
         break;
@@ -100,7 +100,7 @@ bot.on('message', function(user, userID, channelID, message, evt){
         if(args[0]){
             bot.sendMessage({
                 to: channelID,
-                message: ("Hi " + args.join(' ') + ", I'm BEEPBOOP")
+                message: ("Hi " + args.join(' ') + ", I'm Dad")
             });
         }
         break;
