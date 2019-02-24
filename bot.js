@@ -3,6 +3,9 @@ var logger = require('winston');
 var auth = require('../auth.json'); // ./ or ../ for relative path| / for absolute path
 //Configure logger settings
 
+const sp = require('./assets/array/sp.json');
+const jokes = require('./assets/array/jokes.json')
+
 logger.remove(logger.transports.Console);
 logger.add(new logger.transports.Console, {
     colorized:true
@@ -18,6 +21,7 @@ bot.on('ready', function(evt){ //evt = event. When bot is ready triggers event t
     logger.info("Connected");
     logger.info('Logged in as: ');
     logger.info(bot.username + ' -(' + bot.id + ')');
+
 });
 bot.on('message', function(user, userID, channelID, message, evt){ //while bot is on. message function (takes user, user idm channel id, message, and is evt)
     //Bot needs to know if it will execute a command
@@ -25,10 +29,6 @@ bot.on('message', function(user, userID, channelID, message, evt){ //while bot i
     if (message.substring(0,1)=='!'){ //if message substring first char (0,1) ==! then
         var args = message.substring(1).split(' '); //split message into args split on spaces after !
         var cmd = args[0]; //cmd is first part of args so ! hi dad. cmd = hi
-        var HoM = "Hit or miss, I guess they never miss, huh? \
-        You got a boyfriend I bet he doesnt kiss ya, muah! \
-        He gon find another girl and he wont miss ya! \
-        \nHe gon skrrt and hit the dab like Wiz Khalifa";
         args = args.splice(1); //splice(int index, int howmany, itemA, itemB). index = position to add/remove (negative num for from the end)
                                 //howmany = items to remove. 0 = none
                                 //item1-->itemX new items to add
@@ -36,19 +36,49 @@ bot.on('message', function(user, userID, channelID, message, evt){ //while bot i
         switch(cmd){ //based on cmd determines which case
             //!ping
             case 'ping':
+                logger.info("PING");
                 bot.sendMessage({
                     to: channelID,
-                    message: 'Pong!'
+                    message: 'pong!'
                 });
             break;
-            case 'hit':
+            case 'shitpost':
+                logger.info("shitpost");
+                var temp = sp.copyPasta[Math.floor(Math.random()*sp.copyPasta.length)]; //choose random shitpost
                 bot.sendMessage({
                     to: channelID,
-                    message: HoM
+                    //title: 'Top Tier Shitposts',
+                    message: temp
+                    //footer: {text: '${message.author.username}#{message.author.discriminator} is so funny haHA'}
                 });
             break;
+            case 'dadJoke':
+                logger.info("dadJoke");
+                var temp = jokes.dadJoke[Math.floor(Math.random()*jokes.dadJoke.length)];
+                bot.sendMessage({
+                    to:channelID,
+                    message: temp
+                });
+            break;
+            case 'joke':
+                logger.info("joke");
+                var temp = jokes.joke[Math.floor(Math.random()*jokes.joke.length)];
+                bot.sendMessage({
+                    to:channelID,
+                    message: temp
+                });
+            break;
+            case 'beanJoke':
+                logger.info("beanJoke");
+                var temp = jokes.beanJoke[Math.floor(Math.random()*jokes.beanJoke.length)];
+                bot.sendMessage({
+                    to:channelID,
+                    message: temp
+                });
+        break;
             case 'mySR':
-                var rand = Math.random()*10;
+                logger.info("mySR");
+                var rand = Math.random()*10; //Multiple randoms to make middle SR appear more
                 if (rand==9){
                     var temp = Math.floor(Math.random()* (1000)+4000);
                 }
@@ -73,36 +103,39 @@ bot.on('message', function(user, userID, channelID, message, evt){ //while bot i
         }
     }
 });
+//Dad bot
 bot.on('message', function(user, userID, channelID, message, evt){
     var args = message.split(' ');
     var cmd = args[0];
     args = args.splice(1);
 
     switch(cmd){
-        //'im'
         case 'im':
-        if(args[0]){
-            bot.sendMessage({
-                to: channelID,
-                message: ("Hi " + args.join(' ') + ", I'm Dad")
-            });
-        }
+            logger.info("Dad bot");
+            if(args[0]){
+                bot.sendMessage({
+                    to: channelID,
+                    message: ("Hi " + args.join(' ') + ", I'm Dad")
+                });
+            }
         break;
         case 'Im':
-        if(args[0]){
-            bot.sendMessage({
-                to: channelID,
-                message: ("Hi " + args.join(' ') + ", I'm Dad")
-            });
-        }
+            logger.info("Dad bot");
+            if(args[0]){
+                bot.sendMessage({
+                    to: channelID,
+                    message: ("Hi " + args.join(' ') + ", I'm Dad")
+                });
+            }
         break;
         case "I'm":
-        if(args[0]){
-            bot.sendMessage({
-                to: channelID,
-                message: ("Hi " + args.join(' ') + ", I'm Dad")
-            });
-        }
+            logger.info("Dad bot");
+            if(args[0]){
+                bot.sendMessage({
+                    to: channelID,
+                    message: ("Hi " + args.join(' ') + ", I'm Dad")
+                });
+            }
         break;
     }
 });
