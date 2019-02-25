@@ -4,7 +4,8 @@ var auth = require('../auth.json'); // ./ or ../ for relative path| / for absolu
 //Configure logger settings
 
 const sp = require('./assets/array/sp.json');
-const jokes = require('./assets/array/jokes.json')
+const jokes = require('./assets/array/jokes.json');
+const altCmds = require('./altCmds.js');
 
 logger.remove(logger.transports.Console);
 logger.add(new logger.transports.Console, {
@@ -75,7 +76,9 @@ bot.on('message', function(user, userID, channelID, message, evt){ //while bot i
                     to:channelID,
                     message: temp
                 });
-        break;
+            break;
+            case 'roll':
+                altCmds.roll(user, userID, channelID, message, evt);
             case 'mySR':
                 logger.info("mySR");
                 var rand = Math.random()*10; //Multiple randoms to make middle SR appear more
