@@ -5,7 +5,7 @@ var auth = require('../auth.json'); // ./ or ../ for relative path| / for absolu
 
 const sp = require('./assets/array/sp.json');
 const jokes = require('./assets/array/jokes.json');
-const altCmds = require('./altCmds.js');
+const cmds = require('./cmds.js');
 
 logger.remove(logger.transports.Console);
 logger.add(new logger.transports.Console, {
@@ -77,8 +77,17 @@ bot.on('message', function(user, userID, channelID, message, evt){ //while bot i
                     message: temp
                 });
             break;
-            case 'roll':
-                altCmds.roll(user, userID, channelID, message, evt);
+            case 'roll': //module example
+                //const roll = require ("./altCmds.js");
+                cmds.roll(bot,channelID,user);
+                //const message = cmds(bot, channelID, user);
+                logger.info(message);
+                //bot.sendMessage({
+                //    to:channelID,
+                //    message: message
+                //});
+                //altCmds.roll(user, userID, channelID, message, evt);
+            break;
             case 'mySR':
                 logger.info("mySR");
                 var rand = Math.random()*10; //Multiple randoms to make middle SR appear more
