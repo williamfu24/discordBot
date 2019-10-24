@@ -6,6 +6,7 @@ var auth = require('../auth.json'); // ./ or ../ for relative path| / for absolu
 const textCmds = require('./Commands/textCmds.js');
 const cmds = require('./Commands/cmds.js');
 const dad = require("./Commands/dadBot.js");
+const dnd = require("./Commands/DnD.js");
 
 logger.remove(logger.transports.Console);
 logger.add(new logger.transports.Console, {
@@ -39,6 +40,8 @@ bot.on('message', function(user, userID, channelID, message, evt){ //while bot i
                                 //args = args.splice(1) keeps only first item/gets rid of rest starting at postion 1
         cmds(bot, logger, cmd, args, user, userID, channelID, message, evt);
         textCmds(bot,logger,cmd,args,user,userID,channelID,message,evt);
+        dnd(bot, logger, cmd, args, user, userID, channelID, message, evt);
+
     }
 });
 
